@@ -33,6 +33,17 @@ minikube kubectl --profile polar -- wait \
   --selector=db=polar-redis \
   --timeout=180s
 
+echo "\n⌛ Waiting for RabbitMQ to be deployed..."
+while [ $(minikube kubectl --profile polar -- get pod -l db=polar-rabbitmq | wc -l) -eq 0 ] ; do
+  sleep 5
+done
+
+echo "\n⌛ Waiting for RabbitMQ to be ready..."
+minikube kubectl --profile polar -- wait \
+  --for=condition=ready pod \
+  --selector=db=polar-rabbitmq \
+  --timeout=180s
+
 echo "\n⛵ Happy Sailing!\n"
 
 # tilt up -f ../../applications/development/Tiltfile
