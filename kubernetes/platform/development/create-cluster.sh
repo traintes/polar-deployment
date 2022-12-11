@@ -5,7 +5,7 @@ minikube start --cpus 2 --memory 4g --driver docker --profile polar
 
 echo "\n🔌 Enabling NGINX Ingress Controller...\n"
 minikube addons enable ingress --profile polar
-sleep 15
+sleep 30
 
 echo "\n📦 Deploying Keycloak..."
 # Pre-pull Keycloak image to avoid timeouts - see https://github.com/kubernetes/minikube/issues/14806
