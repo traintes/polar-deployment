@@ -2,24 +2,24 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - github.com/traintes/order-service/k8s?ref=master
+- github.com/traintes/order-service/k8s?ref=master
 
 patchesStrategicMerge:
-  - patch-env.yml
-  - patch-resources.yml
-  - patch-volumes.yml
+- patch-env.yml
+- patch-resources.yml
+- patch-volumes.yml
 
 configMapGenerator:
-  - behavior: merge
-    files:
-      - application-prod.yml
-    name: order-config
+- behavior: merge
+  files:
+  - application-prod.yml
+  name: order-config
 
 images:
-  - name: order-service
-    newName: ghcr.io/traintes/order-service
-    newTag: latest
+- name: order-service
+  newName: ghcr.io/traintes/order-service
+  newTag: c91a223937544bd699a2542fac3dc0cbf9010b65
 
 replicas:
-  - name: order-service
-    count: 1
+- count: 1
+  name: order-service
